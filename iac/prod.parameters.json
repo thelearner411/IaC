@@ -1,0 +1,19 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "appServiceAppBeName": {
+            "value": "mcollins-assignment-prod-be"
+        },
+        "appServiceAppFeName": {
+            "value": "mcollins-assignment-prod-fe"
+        },
+        "appServicePlanName": {
+            "value": "mcollins-assignment-prod-asp"
+        },
+        "storageAccountName": {
+            "value": "mcollinsprodstorage"
+        }
+    }
+}
+    
