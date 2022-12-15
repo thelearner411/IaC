@@ -12,7 +12,7 @@ jobs:
 
       # Lint Bicep code 
     - name: Run Bicep linter
-      run: az bicep build --file ./main.bicep
+      run: az bicep build --file ../main.bicep
 
   deploy-dev:
     if: github.ref == 'refs/heads/dev'
@@ -37,7 +37,7 @@ jobs:
       with:
         subscriptionId: e0b9cada-61bc-4b5a-bd7a-52c606726b3b
         resourceGroupName: jseijas_students_1
-        template: ./main.bicep
+        template: ../main.bicep
         parameters: dev.parameters.json
         failOnStdErr: false
 
@@ -64,6 +64,6 @@ jobs:
       with:
         subscriptionId: e0b9cada-61bc-4b5a-bd7a-52c606726b3b
         resourceGroupName: jseijas_students_1
-        template: ./main.bicep
+        template: ../main.bicep
         parameters: prod.parameters.json
         failOnStdErr: false
