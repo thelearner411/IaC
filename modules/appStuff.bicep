@@ -1,7 +1,7 @@
 
 param location string = resourceGroup().location
-param appServiceAppBeName string
-param appServiceAppFeName string
+param appServiceBeName string
+param appServiceFeName string
 param appServicePlanName string
 @allowed([
   'nonprod'
@@ -23,8 +23,8 @@ resource appServicePlan 'Microsoft.Web/serverFarms@2022-03-01' = {
   }
 }
 
-resource appServiceAppBe 'Microsoft.Web/sites@2022-03-01' = {
-  name: appServiceAppBeName
+resource appServiceBe 'Microsoft.Web/sites@2022-03-01' = {
+  name: appServiceBeName
   location: location
   properties: {
     serverFarmId: appServicePlan.id
@@ -32,8 +32,8 @@ resource appServiceAppBe 'Microsoft.Web/sites@2022-03-01' = {
     }
   }
 
-  resource appServiceAppFe 'Microsoft.Web/sites@2022-03-01' = {
-    name: appServiceAppFeName
+  resource appServiceFe 'Microsoft.Web/sites@2022-03-01' = {
+    name: appServiceFeName
     location: location
     properties: {
       serverFarmId: appServicePlan.id
@@ -61,6 +61,6 @@ resource appServiceAppBe 'Microsoft.Web/sites@2022-03-01' = {
     }
   }
 
-output appServiceAppBeHostName string = appServiceAppBe.properties.defaultHostName
-output appServiceAppFeHostName string = appServiceAppFe.properties.defaultHostName
+output appServiceBeHostName string = appServiceBe.properties.defaultHostName
+output appServiceFeHostName string = appServiceFe.properties.defaultHostName
 

@@ -39,6 +39,14 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
     }
   }
 
+@secure ()
+param dbhost string
+@secure ()
+param dbuser string
+@secure ()
+param dbpass string
+@secure ()
+param dbname string
 
 module appService 'modules/appStuff.bicep' = {
   name: 'appService'
@@ -48,6 +56,10 @@ module appService 'modules/appStuff.bicep' = {
     appServiceFeName: appServiceFeName
     appServicePlanName: appServicePlanName
     environmentType: environmentType
+    dbhost: dbhost
+    dbuser: dbuser
+    dbpass: dbpass
+    dbname: dbname
   }
 }
 
