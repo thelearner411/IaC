@@ -1,21 +1,21 @@
 @sys.description('The web app name for the backend.')
 @minLength(3)
-@maxLength(24)
+@maxLength(30)
 param appServiceAppBeName string = 'mcollins-assignment-be'
 
 @sys.description('The web app name for the frontend.')
 @minLength(3)
-@maxLength(24)
+@maxLength(30)
 param appServiceAppFeName string = 'mcollins-assignment-fe'
 
 @sys.description('The App Service Plan name.')
 @minLength(3)
-@maxLength(24)
+@maxLength(30)
 param appServicePlanName string = 'mcollins-assignment-asp'
 
 @sys.description('The atorage account name.')
 @minLength(3)
-@maxLength(24)
+@maxLength(30)
 param storageAccountName string = 'mcollinsstorage'
 
 @allowed([
