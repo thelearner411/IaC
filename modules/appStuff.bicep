@@ -40,4 +40,3 @@ resource appServiceAppBe 'Microsoft.Web/sites@2022-03-01' = {
 output appServiceAppBeHostName string = appServiceAppBe.properties.defaultHostName
 output appServiceAppFeHostName string = appServiceAppFe.properties.defaultHostName
 
-
