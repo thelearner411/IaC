@@ -1,13 +1,17 @@
 
 param location string = resourceGroup().location
-param appServiceBeName string
-param appServiceFeName string
+param appServiceAppBeName string
+param appServiceAppFeName string
 param appServicePlanName string
 @allowed([
   'nonprod'
   'prod'
 ])
 param environmentType string
+param dbhost string
+param dbuser string
+param dbpass string
+param dbname string
 
 var appServicePlanSkuName = (environmentType == 'prod') ? 'P2V3' : 'B1'
 
@@ -19,8 +23,8 @@ resource appServicePlan 'Microsoft.Web/serverFarms@2022-03-01' = {
   }
 }
 
-resource appServiceBe 'Microsoft.Web/sites@2022-03-01' = {
-  name: appServiceBeName
+resource appServiceAppBe 'Microsoft.Web/sites@2022-03-01' = {
+  name: appServiceAppBeName
   location: location
   properties: {
     serverFarmId: appServicePlan.id
@@ -28,16 +32,35 @@ resource appServiceBe 'Microsoft.Web/sites@2022-03-01' = {
     }
   }
 
-  resource appServiceFe 'Microsoft.Web/sites@2022-03-01' = {
-    name: appServiceFeName
+  resource appServiceAppFe 'Microsoft.Web/sites@2022-03-01' = {
+    name: appServiceAppFeName
     location: location
     properties: {
       serverFarmId: appServicePlan.id
       httpsOnly: true
+      siteConfig: {
+        appSettings: [
+          {
+            name: 'DBUSER'
+            value: dbuser
+          }
+          {
+            name: 'DBPASS'
+            value: dbpass
+          }
+          {
+            name: 'DBNAME'
+            value: dbname
+          }
+          {
+            name: 'DBHOST'
+            value: dbhost
+          }
+        ]
       }
     }
+  }
 
-output appServiceBeHostName string = appServiceBe.properties.defaultHostName
-output appServiceFeHostName string = appServiceFe.properties.defaultHostName
-
+output appServiceAppBeHostName string = appServiceAppBe.properties.defaultHostName
+output appServiceAppFeHostName string = appServiceAppFe.properties.defaultHostName
 
