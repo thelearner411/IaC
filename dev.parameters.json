@@ -2,10 +2,10 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "appServiceAppBeName": {
+        "appServiceBeName": {
             "value": "mcollins-assignment-dev-be"
         },
-        "appServiceAppFeName": {
+        "appServiceFeName": {
             "value": "mcollins-assignment-dev-fe"
         },
         "appServicePlanName": {
@@ -13,6 +13,9 @@
         },
         "storageAccountName": {
             "value": "mcollinsdevstorage"
+        },
+        "environmentType": {
+            "value": "nonprod"
         }
     }
 }

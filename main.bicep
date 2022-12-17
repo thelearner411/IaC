@@ -1,19 +1,19 @@
 @sys.description('The web app name for the backend.')
 @minLength(3)
 @maxLength(30)
-param appServiceAppBeName string = 'mcollins-assignment-be'
+param appServiceBeName string = 'mcollins-assignment-be'
 
 @sys.description('The web app name for the frontend.')
 @minLength(3)
 @maxLength(30)
-param appServiceAppFeName string = 'mcollins-assignment-fe'
+param appServiceFeName string = 'mcollins-assignment-fe'
 
 @sys.description('The App Service Plan name.')
 @minLength(3)
 @maxLength(30)
 param appServicePlanName string = 'mcollins-assignment-asp'
 
-@sys.description('The atorage account name.')
+@sys.description('The storage account name.')
 @minLength(3)
 @maxLength(30)
 param storageAccountName string = 'mcollinsstorage'
@@ -52,8 +52,8 @@ module appService 'modules/appStuff.bicep' = {
   name: 'appService'
   params: { 
     location: location
-    appServiceAppBeName: appServiceAppBeName
-    appServiceAppFeName: appServiceAppFeName
+    appServiceBeName: appServiceBeName
+    appServiceFeName: appServiceFeName
     appServicePlanName: appServicePlanName
     environmentType: environmentType
     dbhost: dbhost
@@ -63,8 +63,8 @@ module appService 'modules/appStuff.bicep' = {
   }
 }
 
-  output appServiceAppBeHostName string = appService.outputs.appServiceAppBeHostName
-  output appServiceAppFeHostName string = appService.outputs.appServiceAppFeHostName
+  output appServiceBeHostName string = appService.outputs.appServiceBeHostName
+  output appServiceFeHostName string = appService.outputs.appServiceFeHostName
 
 
 
