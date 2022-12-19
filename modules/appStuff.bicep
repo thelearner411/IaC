@@ -12,7 +12,7 @@ param dbuser string
 param dbpass string
 param dbname string
 
-var appServicePlanSkuName = (environmentType == environmentType) ? 'P2V3' : 'B1'
+var appServicePlanSkuName = 'B1'
 
 resource appServicePlan 'Microsoft.Web/serverFarms@2022-03-01' = {
   name: appServicePlanName
@@ -36,6 +36,7 @@ resource appServiceBe 'Microsoft.Web/sites@2022-03-01' = {
     httpsOnly: true
     siteConfig: {
       linuxFxVersion: 'python|3.10'
+      appCommandLine: 'pm2 serve /home/site/wwwroot/dist --no-daemon --spa'
       appSettings: [
         {
           name: 'DBUSER'
@@ -53,6 +54,14 @@ resource appServiceBe 'Microsoft.Web/sites@2022-03-01' = {
           name: 'DBHOST'
           value: dbhost
         }
+        {
+          name: 'SCM_DO_BUILD_DURING_DEPLOYMENT'
+          value: 'true'
+        }
+        {
+          name: 'ENABLE_ORYX_BUILD'
+          value: 'true'
+        }
       ]
     }
   }
@@ -67,7 +76,7 @@ resource appServiceBe 'Microsoft.Web/sites@2022-03-01' = {
       serverFarmId: appServicePlan.id
       httpsOnly: true
       siteConfig: {
-        linuxFxVersion: 'node |14'
+        linuxFxVersion: 'Node|14-lts'
         appCommandLine: 'pm2 serve /home/site/wwwroot/dist --no-daemon --spa'
         appSettings: [
           {
@@ -85,6 +94,14 @@ resource appServiceBe 'Microsoft.Web/sites@2022-03-01' = {
           {
             name: 'DBHOST'
             value: dbhost
+          }
+          {
+            name: 'SCM_DO_BUILD_DURING_DEPLOYMENT'
+            value: 'true'
+          }
+          {
+            name: 'ENABLE_ORYX_BUILD'
+            value: 'true'
           }
         ]
       }

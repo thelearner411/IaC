@@ -16,9 +16,6 @@
         },
         "environmentType": {
             "value": "prod"
-        },
-        "appCommandLine": {
-            "value": "pm2 serve /home/site/wwwroot/dist --no-daemon --spa"
         }
     }
 }
