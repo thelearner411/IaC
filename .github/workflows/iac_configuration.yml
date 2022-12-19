@@ -38,8 +38,8 @@ jobs:
         subscriptionId: e0b9cada-61bc-4b5a-bd7a-52c606726b3b
         resourceGroupName: jseijas_students_1
         template: ./main.bicep
-        parameters: prod.parameters.json dbuser=jseijas-dbsrv.postgres.database.azure.com dbhost=jseijas-dbsrv.postgres.database.azure.com
-                                          dbpass=Pa$$w0rd1990 dbname=mcollins-assignment-prod-db
+        parameters: prod.parameters.json dbuser=${{ secrets.DBUSER }} dbhost=${{ secrets.DBHOST }}
+                                          dbpass=${{ secrets.DBPASS }} dbname=${{ secrets.DBNAME }}
         failOnStdErr: false
 
   deploy-dev:
@@ -66,6 +66,6 @@ jobs:
         subscriptionId: e0b9cada-61bc-4b5a-bd7a-52c606726b3b
         resourceGroupName: jseijas_students_1
         template: ./main.bicep
-        parameters: dev.parameters.json dbuser=jseijas-dbsrv.postgres.database.azure.com dbhost=jseijas-dbsrv.postgres.database.azure.com
-                                        dbpass=Pa$$w0rd1990 dbname=mcollins-assignment-dev-db
+        parameters: dev.parameters.json dbuser=${{ secrets.DBUSER }} dbhost=${{ secrets.DBHOST }}
+                                        dbpass=${{ secrets.DBPASS }} dbname=${{ secrets.DBNAME }}
         failOnStdErr: false
