@@ -12,7 +12,7 @@ param dbuser string
 param dbpass string
 param dbname string
 
-var appServicePlanSkuName = (environmentType == 'prod') ? 'P2V3' : 'F1'
+var appServicePlanSkuName = 'B1'
 
 resource appServicePlan 'Microsoft.Web/serverFarms@2022-03-01' = {
   name: appServicePlanName
@@ -109,4 +109,3 @@ resource appServiceBe 'Microsoft.Web/sites@2022-03-01' = {
 
 output appServiceBeHostName string = appServiceBe.properties.defaultHostName
 output appServiceFeHostName string = appServiceFe.properties.defaultHostName
-
