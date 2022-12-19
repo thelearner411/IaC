@@ -25,7 +25,7 @@ param storageAccountName string = 'mcollinsstorage'
 param environmentType string = 'nonprod'
 param location string = resourceGroup().location
 
-var storageAccountSkuName = (environmentType == environmentType) ? 'Standard_GRS' : 'Standard_LRS'  
+var storageAccountSkuName = 'B1'  
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
     name: storageAccountName
@@ -47,7 +47,6 @@ param dbuser string
 param dbpass string
 @secure ()
 param dbname string
->>>>>>> dev
 
 module appService 'modules/appStuff.bicep' = {
   name: 'appService'
