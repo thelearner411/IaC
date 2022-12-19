@@ -36,7 +36,6 @@ resource appServiceBe 'Microsoft.Web/sites@2022-03-01' = {
     httpsOnly: true
     siteConfig: {
       linuxFxVersion: 'python|3.10'
-      appCommandLine: 'pm2 serve /home/site/wwwroot/dist --no-daemon --spa'
       appSettings: [
         {
           name: 'DBUSER'
