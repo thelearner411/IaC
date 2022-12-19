@@ -67,7 +67,7 @@ resource appServiceBe 'Microsoft.Web/sites@2022-03-01' = {
       serverFarmId: appServicePlan.id
       httpsOnly: true
       siteConfig: {
-        linuxFxVersion: 'node |18'
+        linuxFxVersion: 'node |14'
         appCommandLine: 'pm2 serve /home/site/wwwroot/dist --no-daemon --spa'
         appSettings: [
           {
