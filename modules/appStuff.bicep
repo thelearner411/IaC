@@ -12,7 +12,7 @@ param dbuser string
 param dbpass string
 param dbname string
 
-var appServicePlanSkuName = (environmentType == 'prod') ? 'P2V3' : 'B1'
+var appServicePlanSkuName = (environmentType == environmentType) ? 'P2V3' : 'B1'
 
 resource appServicePlan 'Microsoft.Web/serverFarms@2022-03-01' = {
   name: appServicePlanName
@@ -29,7 +29,7 @@ resource appServicePlan 'Microsoft.Web/serverFarms@2022-03-01' = {
 resource appServiceBe 'Microsoft.Web/sites@2022-03-01' = {
   name: appServiceBeName
   location: location
-  kind: 'functionapp,linux'
+  kind: 'linux'
   properties: {
     reserved: true
     serverFarmId: appServicePlan.id
@@ -61,13 +61,14 @@ resource appServiceBe 'Microsoft.Web/sites@2022-03-01' = {
   resource appServiceFe 'Microsoft.Web/sites@2022-03-01' = {
     name: appServiceFeName
     location: location
-    kind: 'functionapp,linux'
+    kind: 'linux'
     properties: {
       reserved: true
       serverFarmId: appServicePlan.id
       httpsOnly: true
       siteConfig: {
-        linuxFxVersion: 'python|3.10'
+        linuxFxVersion: 'node |18'
+        appCommandLine: 'pm2 serve /home/site/wwwroot/dist --no-daemon --spa'
         appSettings: [
           {
             name: 'DBUSER'
