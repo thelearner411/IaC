@@ -13,7 +13,7 @@ param appServiceFeName string = 'mcollins-assignment-fe'
 @maxLength(30)
 param appServicePlanName string = 'mcollins-assignment-asp'
 
-@sys.description('The atorage account name.')
+@sys.description('The storage account name.')
 @minLength(3)
 @maxLength(30)
 param storageAccountName string = 'mcollinsstorage'
@@ -25,7 +25,7 @@ param storageAccountName string = 'mcollinsstorage'
 param environmentType string = 'nonprod'
 param location string = resourceGroup().location
 
-var storageAccountSkuName = (environmentType == 'prod') ? 'Standard_GRS' : 'Standard_LRS'  
+var storageAccountSkuName = (environmentType == environmentType) ? 'Standard_GRS' : 'Standard_LRS'  
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
     name: storageAccountName
@@ -39,14 +39,14 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
     }
   }
 
-@secure ()
-param dbhost string
-@secure ()
-param dbuser string
-@secure ()
-param dbpass string
-@secure ()
-param dbname string
+  @secure()
+  param dbhost string
+  @secure()
+  param dbuser string
+  @secure()
+  param dbpass string
+  @secure()
+  param dbname string
 
 module appService 'modules/appStuff.bicep' = {
   name: 'appService'
