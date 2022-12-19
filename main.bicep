@@ -39,6 +39,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
     }
   }
 
+<<<<<<< HEAD
   @secure()
   param dbhost string
   @secure()
@@ -47,6 +48,16 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   param dbpass string
   @secure()
   param dbname string
+=======
+@secure ()
+param dbhost string
+@secure ()
+param dbuser string
+@secure ()
+param dbpass string
+@secure ()
+param dbname string
+>>>>>>> dev
 
 module appService 'modules/appStuff.bicep' = {
   name: 'appService'
