@@ -13,9 +13,6 @@
         },
         "storageAccountName": {
             "value": "mcollinsprodstorage"
-        },
-        "environmentType": {
-            "value": "prod"
         }
     }
 }
